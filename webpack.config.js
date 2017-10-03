@@ -1,21 +1,21 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const statConf = {
+  errorDetails: true,
+  warnings: true,
+  version: false,
   assets: false,
   chunks: false,
-  hash: false,
-  version: false,
   errors: true,
-  errorDetails: true,
-  warnings: true
+  hash: false
 }
 const alias = {
   'project-components': path.resolve('./components'),
   'project-services': path.resolve('./services')
 }
 module.exports = env => {
-  let outputJS = './dist/bundle.js'
   let outputCSS = './dist/bundle.css'
+  let outputJS = './dist/bundle.js'
   let devtool = 'source-map'
   if (env === 'production-p') {
     outputJS = './dist/bundle.min.js'
@@ -70,7 +70,7 @@ module.exports = env => {
       new ExtractTextPlugin(outputCSS)
     ],
     resolve: {
-      alias: alias
+      alias
     }
   })
 }
